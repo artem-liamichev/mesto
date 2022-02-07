@@ -1,6 +1,6 @@
 const profileOpenPopupButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup')
-const profileClosePopup = document.querySelector('.popup__close')
+const profileClosePopup = document.querySelector('.popup__close-button')
 
 const profileSavePopup = document.querySelector('.popup__save')
 
