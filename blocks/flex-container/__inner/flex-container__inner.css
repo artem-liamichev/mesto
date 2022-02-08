@@ -1,0 +1,12 @@
+.flex-container__inner {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 336px;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .flex-container__inner {
+    max-width: 282px;
+  }
+}

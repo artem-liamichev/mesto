@@ -3,13 +3,9 @@
   height: 27px;
   border: none;
   border-bottom: 1px solid rgba(000, 000, 000, 0.2);
-
   font-size: 14px;
   line-height: 17px;
-
-  /* opacity: 0.2; */
   margin-bottom: 30px;
-  /* color: black; */
 }
 
 .popup__input:last-of-type {
@@ -17,6 +13,5 @@
 }
 
 .popup__input::placeholder  {
-  /* color:black; */
   opacity:  1;
 }
