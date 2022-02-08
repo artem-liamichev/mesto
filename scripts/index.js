@@ -18,21 +18,18 @@ function closePopup() {
 
 profileClosePopup.addEventListener('click', closePopup)
 
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form') // Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
+let formElement = document.querySelector('.popup__form')
+
 console.log(formElement);
 
-let nameInput = formElement.querySelector('input[name="name"]') // Воспользуйтесь инструментом .querySelector()
+let nameInput = formElement.querySelector('input[name="name"]')
 console.log(nameInput);
 
-let jobInput = formElement.querySelector('input[name="job"]') // Воспользуйтесь инструментом .querySelector()
+let jobInput = formElement.querySelector('input[name="job"]')
 console.log(jobInput);
 
-// Обработчик «отправки» формы, хотя пока
-
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
+    evt.preventDefault();
 
     let nameValue = nameInput.value;
     let jobValue = jobInput.value;
@@ -47,4 +44,3 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-
