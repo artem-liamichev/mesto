@@ -1,5 +1,5 @@
 .element__like-button_disabled {
-  background-image: url(../../../../images/like-icon_disabled.svg);
+  background-image: url("../../../../images/like-icon_disabled.svg");
 }
 
 .element__like-button_disabled:hover {
