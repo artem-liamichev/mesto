@@ -1,7 +1,0 @@
-.element__like-icon_disabled {
-  background-image: url(/images/like-icon_disabled.svg);
-}
-
-.element__like-icon_disabled:hover {
-  opacity: 0.6;
-}

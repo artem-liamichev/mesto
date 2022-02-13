@@ -5,6 +5,7 @@
   width: 358px;
   color: white;
   border:none;
+  transition: opacity 0.3s;
 }
 
 .popup__save:hover {

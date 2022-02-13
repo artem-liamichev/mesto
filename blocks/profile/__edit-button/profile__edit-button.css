@@ -8,6 +8,7 @@
   align-items: center;
   margin-left: 18px;
   background-color: black;
+  transition: opacity 0.3s;
 }
 
 .profile__edit-button:hover {

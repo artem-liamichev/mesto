@@ -4,9 +4,3 @@
   margin: 0 auto;
   box-sizing: border-box;
 }
-
-@media screen and (max-width: 767px) {
-  .page__container {
-    padding: 0 19px;
-  }
-}
