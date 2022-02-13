@@ -4,4 +4,5 @@
   align-self: center;
   border: none;
   transition: opacity 0.3s;
+  background-color: transparent;
 }
