@@ -31,14 +31,15 @@
           </section>
 
           <section class="elements">
-            <article class="element">
+            <!-- <article class="element">
+              <button class="element__delete-button" type="button"></button>
               <img src="./images/karachaevsk.png" alt="фото монастыря" class="element__image">
               <div class="element__info">
                 <h2 class="element__name">Карачаевск</h2>
                 <button class="element__like-button element__like-button_disabled" type="button"></button>
               </div>
-            </article>
-            <article class="element">
+            </article> -->
+            <!-- <article class="element">
               <img src="./images/elbrus.png" alt="фото горы" class="element__image" data-type="auto">
               <div class="element__info">
                 <h2 class="element__name">Гора Эльбрус</h2>
@@ -72,7 +73,7 @@
                 <h2 class="element__name">Карачаево-Черкессия</h2>
                 <button class="element__like-button element__like-button_disabled" type="button"></button>
               </div>
-            </article>
+            </article> -->
             </section>
           </main>
 
@@ -80,19 +81,56 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
 
-          <article class="popup">
+          <article class="popup popup_profile">
             <div class="popup__container">
               <button class="popup__close-button" type="button">
                 <img class="popup__close-button-image" src="images/close-button.svg" alt="закрыть попап">
               </button>
               <form class="popup__form" name="edit-profile">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                    <input class="popup__input" name="name" value="" type="text" placeholder="Имя">
-                    <input class="popup__input" name="job" value="" type="text" placeholder="Профессия">
+                <input class="popup__input" name="name" value="" type="text" placeholder="Имя">
+                <input class="popup__input" name="job" value="" type="text" placeholder="Профессия">
                 <button class="popup__save" type="submit">Сохранить</button>
-            </form>
+              </form>
             </div>
           </article>
+
+          <article class="popup popup_card">
+            <div class="popup__container">
+              <button class="popup__close-button popupCard__close-button" type="button">
+                <img class="popup__close-button-image" src="images/close-button.svg" alt="закрыть попап">
+              </button>
+              <form class="popup__form" name="add-card">
+                <h3 class="popup__title">Новое место</h3>
+                <input class="popup__input" name="place-name" value="" type="text" placeholder="Название">
+                <input class="popup__input" name="picture-link" value="" type="text" placeholder="Ссылка на картинку">
+                <button class="popup__save" type="submit">Сохранить</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="popup popup_zoom">
+            <div class="popup_zoom_container">
+            <button class="popup__close-button popupCard__close-button" type="button">
+              <img class="popup__close-button-image" src="images/close-button.svg" alt="закрыть попап">
+            </button>
+              <figure class="popup__figure">
+                <img class="popup__image" src="./images/karachaevsk.png" alt="кто-то лежит на боковой полке вагона">
+                <figcaption class="popup__caption">ваша полка — верхняя</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <template class="item-template">
+            <article class="element">
+              <button class="element__delete-button" type="button"></button>
+              <img src="" alt="" class="element__image">
+              <div class="element__info">
+                <h2 class="element__name"></h2>
+                <button class="element__like-button element__like-button_disabled" type="button"></button>
+              </div>
+            </article>
+          </template>
     </div>
 <script src="./scripts/index.js"></script>
 </body>

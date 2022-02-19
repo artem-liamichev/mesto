@@ -1,0 +1,16 @@
+.popup_fade-out {
+  animation: fadeOut ease 1s;
+}
+
+@keyframes fade-out {
+  from
+  {
+    display: block;
+    opacity: 1;
+  }
+  to
+  {
+    display: flex;
+    opacity: 0;
+  }
+}

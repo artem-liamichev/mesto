@@ -10,6 +10,14 @@
   padding: 0 19px;
 }
 
+@media screen and (max-width: 953px) {
+  .elements {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .elements {
     grid-template-columns: 1fr;

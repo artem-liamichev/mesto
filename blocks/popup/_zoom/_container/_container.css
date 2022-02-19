@@ -1,0 +1,5 @@
+.popup_zoom_container {
+  position: relative;
+  background-color: transparent;
+  display: flex;
+}
