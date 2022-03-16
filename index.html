@@ -18,10 +18,12 @@
             <div class="profile__container">
               <img src="images/avatar.png" alt="Кусто в красной шапке и улыбается" class="profile__avatar">
               <div class="profile__info">
+                <div class="profile__info-container">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
                   <button class="profile__edit-button" type="button">
                     <img class="profile__edit-button-image" src="images/edit-button.svg" alt="редактировать профиль">
                   </button>
+                </div>
                 <p class="profile__bio">Исследователь океана</p>
               </div>
             </div>
@@ -81,12 +83,12 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
 
-          <article class="popup popup_profile">
+          <article class="popup profile_popup">
             <div class="popup__container">
               <button class="popup__close-button" type="button">
                 <img class="popup__image-close" src="images/close-button.svg" alt="закрыть попап">
               </button>
-              <form class="popup__form" name="edit-profile">
+              <form class="popup__form profile_form" name="edit-profile">
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input class="popup__input" name="name" value="" type="text" placeholder="Имя">
                 <input class="popup__input" name="job" value="" type="text" placeholder="Профессия">
@@ -95,12 +97,12 @@
             </div>
           </article>
 
-          <article class="popup">
+          <article class="popup add_popup">
             <div class="popup__element-container">
               <button class="popup__close-button" type="button">
                 <img class="popup__image-close" src="images/close-button.svg" alt="закрыть попап">
               </button>
-              <form class="popup__form" name="add-card">
+              <form class="popup__form add_form" name="add-card">
                 <h3 class="popup__title">Новое место</h3>
                 <input class="popup__input" name="place-name" value="" type="text" placeholder="Название">
                 <input class="popup__input" name="picture-link" value="" type="text" placeholder="Ссылка на картинку">
@@ -109,13 +111,13 @@
             </div>
           </article>
 
-          <article class="popup">
+          <article class="popup zoom_popup">
             <div class="popup__zoom-container">
             <button class="popup__close-button" type="button">
               <img class="popup__image-close" src="images/close-button.svg" alt="закрыть попап">
             </button>
               <figure class="popup__figure">
-                <img class="popup__image" src="#" alt="">
+                <img class="popup__image" src="#" alt="#">
                 <figcaption class="popup__caption"></figcaption>
               </figure>
             </div>
