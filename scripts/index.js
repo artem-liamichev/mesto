@@ -1,7 +1,7 @@
 const profileOpenPopupButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.profile_popup');
+const popupProfile = document.querySelector('.popup_profile');
 const profileClosePopup = document.querySelector('.popup__close-button');
-const formProfile = document.querySelector('.popup__form');
+const formProfile = document.querySelector('.form_profile');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
 let nameInput = formProfile.querySelector('input[name="name"]');
@@ -40,13 +40,13 @@ const initialElements = [
 const elementOpenPopupButton = document.querySelector('.profile__add-button');
 
 //select 2nd popup
-let popupElement = document.querySelector('.add_popup');
+let popupElement = document.querySelector('.popup_add');
 
 //select 2nd close-button
 let elementClosePopup = popupElement.querySelector('.popup__close-button');
 
 //select 2nd form
-formElement = document.querySelector('.add_form');
+formElement = document.querySelector('.form_add');
 
 const placeNameInput = formElement.querySelector('input[name="place-name"]');
 const placeLinkInput = formElement.querySelector('input[name="picture-link"]');
@@ -144,7 +144,7 @@ function handleLike(event) {
 }
 
 //select 2nd popup
-let popupZoom = document.querySelector('.zoom_popup');
+let popupZoom = document.querySelector('.popup_zoom');
 
 function openZoomPopup() {
   popupZoom.classList.remove('popup_fade-out');
