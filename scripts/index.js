@@ -1,7 +1,7 @@
 const profileOpenPopupButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
 const profileClosePopup = document.querySelector('.popup__close-button');
-const formProfile = document.querySelector('.form_profile');
+const formProfile = document.querySelector('.popup__form_profile');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
 let nameInput = formProfile.querySelector('input[name="name"]');
@@ -46,7 +46,7 @@ let popupElement = document.querySelector('.popup_add');
 let elementClosePopup = popupElement.querySelector('.popup__close-button');
 
 //select 2nd form
-formElement = document.querySelector('.form_add');
+formElement = document.querySelector('.popup__form_add');
 
 const placeNameInput = formElement.querySelector('input[name="place-name"]');
 const placeLinkInput = formElement.querySelector('input[name="picture-link"]');
