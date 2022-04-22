@@ -6,6 +6,8 @@
   padding: 34px 36px 37px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  height: 330px;
 }
 
 @media screen and (max-width:767px) {
