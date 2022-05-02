@@ -1,80 +1,69 @@
-function enableValidation(config) {
-  const form = document.querySelector(config.form)
-  form.addEventListener('submit', handleFormSubmit);
-  form.addEventListener('input', (event) => handleFormInput(event, config));
+function showInputError(form, input, config, errorMessage) {
+  const error = form.querySelector(`.${input.id}-error`);
+  input.classList.add(config.inputError);
+  error.textContent = errorMessage;
+  error.classList.add(config.error);
 }
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const isValid = form.checkValidity();
-}
+function hideInputError (form, input, config ) {
+  const error = form.querySelector(`.${input.id}-error`);
+  input.classList.remove(config.inputError);
+  error.classList.remove(config.error);
+  error.textContent = '';
+  console.log(error);
+};
 
-function handleFormInput(event, config) {
-  const form = event.currentTarget;
-  const input = event.target;
-
-  // 1. Найти невалидные поля и установить тексты ошибок
-// setCustomError(input);
-  // 2. Показать ошибки пользователям
-setFieldError(input);
-  // 3. Деактивировать кнопку на невалидной форме
-setSubmitButtonState(form, config);
-}
-
-// function setCustomError(input) {
-//   const validity = input.validity;
-
-//   if (validity.tooShort || validity.tooLong) {
-//     const currentLenght = input.value.length;
-//     const min = input.getAttribute('minlength');
-//     const max = input.getAttribute('maxlength');
-//   }
-// }
-
-function setFieldError(input) {
-  const error = document.querySelector(`.${input.id}-error`);
-  error.textContent = input.validationMessage;
-}
-
-function setSubmitButtonState(form, config) {
-  const button = form.querySelector(config.submitButton);
-  const isValid = form.checkValidity();
-  if (isValid) {
-    button.classList.remove(config.popupIsInvalid);
-    button.removeAttribute('disabled');
-  }  else {
-    button.classList.add(config.popupIsInvalid);
-    button.setAttribute('disabled', 'disabled');
+function checkInputValidity (form, input, config) {
+  if (!input.validity.valid) {
+    showInputError(form, input, config, input.validationMessage);
+  } else {
+    hideInputError(form, input, config);
   }
+};
+
+function setEventListeners(form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.input));
+  const button = form.querySelector(config.submitButton);
+
+  toggleButtonState(inputList, button, config);
+
+  inputList.forEach((input) => {
+    input.addEventListener('input', function () {
+      checkInputValidity(form, input, config);
+      toggleButtonState(inputList, button, config);
+    });
+  });
+};
+
+function enableValidation(config) {
+  const formList = Array.from(document.querySelectorAll(config.form));
+  formList.forEach((form) => {
+    setEventListeners(form, config);
+});
+};
+
+enableValidation({
+  submitButton: '.popup__save',
+  popupIsInvalid: 'popup__save_disabled',
+  form: '.popup__form',
+  input: '.popup__input',
+  inputError: 'popup__input_type_error',
+  error: 'error'
+});
+
+function hasInvalidInput (inputList) {
+  return inputList.some((input) => {
+      return !input.validity.valid;
+  })
 }
 
-enableValidation({
-  form: '.popup__form_profile',
-  submitButton: '.popup__save',
-  popupIsInvalid: 'popup__save_disabled',
-});
-
-enableValidation({
-  form: '.popup__form_add',
-  submitButton: '.popup__save',
-  popupIsInvalid: 'popup__save_disabled',
-});
-
-
-
-//   const isClosest = evt.target.closest(popupProfile)
-
-//   if (!isClosest && popupProfile.classList.contains('popup_opened'))
-//   {
-//     popupProfile.classList.remove('popup_opened');
-//   }
-
-// })
-//  {
-//     if (popupProfile.classList.contains('popup_opened')) {
-//       closeProfilePopup()
-//   }
-// }
-// );
+function toggleButtonState (inputList, button, config) {
+  if (hasInvalidInput(inputList)) {
+     button.classList.add(config.popupIsInvalid);
+     button.setAttribute('disabled', 'disabled');
+  } else {
+     button.classList.remove(config.popupIsInvalid);
+     button.removeAttribute('disabled');
+    }
+  }
 

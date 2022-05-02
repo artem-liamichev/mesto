@@ -10,33 +10,6 @@ const profileName = document.querySelector('.profile__name');
 const profileBio = document.querySelector('.profile__bio');
 const popupZoom = document.querySelector('.popup_zoom');
 
-const initialElements = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]
-
 //select 2nd close-button
 const zoomedElementClosePopup = popupZoom.querySelector('.popup__close-button');
 
@@ -51,6 +24,9 @@ const elementClosePopup = popupElement.querySelector('.popup__close-button');
 
 //select 2nd form
 const formElement = document.querySelector('.popup__form_add');
+
+//select 2nd form save-button
+const elementSaveButton = formElement.querySelector('.popup__save');
 
 const placeNameInput = formElement.querySelector('input[name="place-name"]');
 const placeLinkInput = formElement.querySelector('input[name="picture-link"]');
@@ -79,7 +55,7 @@ function closePopup(popup) {
   popup.classList.add('popup_fade-out');
   setTimeout(function(){
     popup.classList.remove('popup_opened');
-    }, 1000);
+    }, 400);
 }
 
 function openProfilePopup(popup) {
@@ -102,12 +78,7 @@ profileOpenPopupButton.addEventListener('click', openProfilePopup);
 
 // profileClosePopup.addEventListener('click', closeProfilePopup);
 
-document.addEventListener('click', function (evt) {
-  const popupContainer = document.querySelector('.popup__container');
-  if ((popupProfile.classList.contains('popup_opened')) && (evt.target.closest('.popup__container') != popupContainer) || (evt.target.closest('.popup__close-button') == profileClosePopup)) {
-    closeProfilePopup();
-  }
-  })
+
 
 
 // const overlay = document.querySelector('.');
@@ -117,11 +88,16 @@ formProfile.addEventListener('submit', submitFormProfileHandler);
 
 function openElementPopup() {
   openPopup(popupElement);
+  elementSaveButton.classList.add('popup__save_disabled');
+  elementSaveButton.setAttribute('disabled', 'disabled');
 }
 
 function closeElementPopup() {
   closePopup(popupElement);
+  // elementOpenPopupButton.removeAttribute('disabled');
 }
+
+
 
 elementOpenPopupButton.addEventListener('click', openElementPopup);
 
@@ -129,13 +105,29 @@ document.addEventListener('keydown', function(evt) {
   if (evt.key === 'Escape'){
     closeElementPopup();
     closeProfilePopup();
+    closeZoomPopup();
   }
 });
+
+document.addEventListener('click', function (evt) {
+  const popupContainer = document.querySelector('.popup__container');
+  if ((popupProfile.classList.contains('popup_opened')) && (evt.target.closest('.popup__container') != popupContainer) || (evt.target.closest('.popup__close-button') == profileClosePopup)) {
+    closeProfilePopup();
+  }
+  })
 
 document.addEventListener('click', function (evt) {
   const popupContainer = document.querySelector('.popup__element-container');
   if ((popupElement.classList.contains('popup_opened')) && (evt.target.closest('.popup__element-container') != popupContainer) || (evt.target.closest('.popup__close-button') == elementClosePopup)) {
     closeElementPopup();
+  }
+  })
+
+
+document.addEventListener('click', function (evt) {
+  const popupContainer = document.querySelector('.popup__zoom-container');
+  if ((popupZoom.classList.contains('popup_opened')) && (evt.target.closest('.popup__zoom-container') != popupContainer) || (evt.target.closest('.popup__close-button') == zoomedElementClosePopup)) {
+    closeZoomPopup();
   }
   })
 
