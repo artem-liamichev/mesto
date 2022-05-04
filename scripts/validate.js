@@ -10,7 +10,6 @@ function hideInputError (form, input, config ) {
   input.classList.remove(config.inputError);
   error.classList.remove(config.error);
   error.textContent = '';
-  console.log(error);
 };
 
 function checkInputValidity (form, input, config) {
