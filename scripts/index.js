@@ -43,6 +43,13 @@ const placeLinkInput = formElement.querySelector('input[name="picture-link"]');
 //select element-card
 const elements = document.querySelector('.elements');
 
+let newElement = {}
+
+function initializeCard(placeInput) {
+  const card = new Card(placeInput, '.item-template');
+  newElement = card.createCard()
+}
+
 function copyToPopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
@@ -120,6 +127,7 @@ function submitFormHandler (evt) {
   evt.preventDefault();
   const placeInput = {name: placeNameInput.value, link: placeLinkInput.value};
   initializeCard(placeInput);
+  elements.prepend(newElement);
   closeElementPopup();
   formElement.reset();
   formValidators[ formElement.name ].resetValidation()
@@ -129,9 +137,9 @@ formElement.addEventListener('submit', submitFormHandler);
 
 initialElements.forEach((element) => {
   initializeCard(element);
+  elements.prepend(newElement);
   closePopup(popupElement);
 });
-
 
 const formValidators = {}
 
@@ -147,8 +155,3 @@ const enableValidation = (config) => {
 
 enableValidation(config);
 
-function initializeCard(placeInput) {
-  const card =   new Card(placeInput, '.item-template');
-  const newElement = card.createCard()
-  elements.prepend(newElement);
-}
