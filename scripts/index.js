@@ -50,6 +50,10 @@ function initializeCard(placeInput) {
   newElement = card.createCard()
 }
 
+function locateNewCardAhead(){
+  elements.prepend(newElement);
+}
+
 function copyToPopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
@@ -127,7 +131,7 @@ function submitFormHandler (evt) {
   evt.preventDefault();
   const placeInput = {name: placeNameInput.value, link: placeLinkInput.value};
   initializeCard(placeInput);
-  elements.prepend(newElement);
+  locateNewCardAhead()
   closeElementPopup();
   formElement.reset();
   formValidators[ formElement.name ].resetValidation()
@@ -137,7 +141,7 @@ formElement.addEventListener('submit', submitFormHandler);
 
 initialElements.forEach((element) => {
   initializeCard(element);
-  elements.prepend(newElement);
+  locateNewCardAhead()
   closePopup(popupElement);
 });
 
