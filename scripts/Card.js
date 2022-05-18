@@ -31,7 +31,6 @@ export default class Card {
   }
 
 //устанавливаем слушателей событий:
-
 //здесь нужна стрелочная функция, т.к. она позволяет обратиться к обработчикам через this:
 
   _addListeners() {
@@ -48,6 +47,7 @@ export default class Card {
 
   _handleDelete() {
     this._element.remove();
+    this._element = null;
   }
 
   _handleLike() {
@@ -55,9 +55,9 @@ export default class Card {
   }
 
   _handleOpenImage() {
-  popupImage.src = this._element.querySelector('.element__image').src;
-  popupImage.alt = this._element.querySelector('.element__image').alt;
-  popupCaption.textContent = this._element.querySelector('.element__name').textContent;
+  popupImage.src = this._link;
+  popupImage.alt = this._name;
+  popupCaption.textContent = this._name;
   openZoomPopup();
   }
 }

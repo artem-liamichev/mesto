@@ -8,64 +8,77 @@ export default class FormValidator {
     this._inputError = config.inputError;
     this._error = config.error;
     this._form = formSelector;
+    this._inputList = Array.from(this._form.querySelectorAll(this._input));
+    this._button = this._form.querySelector(this._submitButton);
   }
 
   //приватные методы, которые обрабатывают форму:
-  _showInputError(form, input) {
-    const error = form.querySelector(`.${input.id}-error`);
+  _showInputError(input) {
+    const error = this._form.querySelector(`.${input.id}-error`);
     input.classList.add(this._inputError);
     error.textContent = input.validationMessage;
     error.classList.add(this._error);
   }
 
-  _checkInputValidity (form, input) {
+  _checkInputValidity (input) {
     if (!input.validity.valid) {
-      this._showInputError(form, input, input.validationMessage);
+      this._showInputError(input, input.validationMessage);
     } else {
-      this._hideInputError(form, input);
+      this._hideInputError(input);
     }
   };
 
-  _hideInputError (form, input) {
-    const error = form.querySelector(`.${input.id}-error`);
+  _hideInputError (input) {
+    const error = this._form.querySelector(`.${input.id}-error`);
     input.classList.remove(this._inputError);
     error.classList.remove(this._error);
     error.textContent = '';
   };
 
-  _hasInvalidInput(inputList) {
-    return inputList.some((input) => {
+  _hasInvalidInput() {
+    return this._inputList.some((input) => {
         return !input.validity.valid;
     })
   }
 
+  _disableButton() {
+    this._button.classList.add(this._popupIsInvalid);
+    this._button.setAttribute('disabled', 'disabled');
+  }
+
+  _enableButton() {
+    this._button.classList.remove(this._popupIsInvalid);
+    this._button.removeAttribute('disabled');
+  }
+
   //изменяет состояние кнопки сабмита:
-  _toggleButtonState(inputList, button) {
-    if (this._hasInvalidInput(inputList)) {
-      button.classList.add(this._popupIsInvalid);
-      button.setAttribute('disabled', 'disabled');
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._disableButton()
     } else {
-      button.classList.remove(this._popupIsInvalid);
-      button.removeAttribute('disabled');
+      this._enableButton()
       }
     }
 
+
+  resetValidation() {
+    this._toggleButtonState();
+  }
+
   //устанавливает обработчики:
-  _setEventListeners(form) {
-    const inputList = Array.from(form.querySelectorAll(this._input));
-    const button = form.querySelector(this._submitButton);
-    this._toggleButtonState(inputList, button);
-    inputList.forEach((input) => {
+  _setEventListeners() {
+    this._toggleButtonState();
+    this._inputList.forEach((input) => {
       input.addEventListener('input',  () => {
-        this._checkInputValidity(form, input);
-        this._toggleButtonState(inputList, button);
+        this._checkInputValidity(input);
+        this._toggleButtonState();
       });
     });
   }
 
   //публичный метод, который включает валидацию формы.
   enableValidation() {
-    this._setEventListeners(this._form);
+    this._setEventListeners();
   };
 }
 
