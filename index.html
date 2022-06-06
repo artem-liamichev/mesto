@@ -111,11 +111,11 @@
               <form class="popup__form popup__form_add" name="add-card" novalidate>
                 <h3 class="popup__title">Новое место</h3>
                 <div class="field-container">
-                  <input id="place-input" class="popup__input" name="place-name" value="" type="text" placeholder="Название" required minlength="2" maxlength="30">
+                  <input id="place-input" class="popup__input" name="name" value="" type="text" placeholder="Название" required minlength="2" maxlength="30">
                   <span class="place-input-error error" id="place-error"></span>
                 </div>
                 <div class="field-container">
-                <input id="link-input" class="popup__input" name="picture-link" value="" type="url" placeholder="Ссылка на картинку" required>
+                <input id="link-input" class="popup__input" name="link" value="" type="url" placeholder="Ссылка на картинку" required>
                 <span class="link-input-error error" id="link-error"></span>
                 </div>
                 <button class="popup__save" type="submit">Сохранить</button>
@@ -146,9 +146,13 @@
             </article>
           </template>
     </div>
-<script src="./scripts/index.js" type="module"></script>
-<script src="./scripts/initialCards.js" type="module"></script>
-<script src="./scripts/Card.js" type="module"></script>
-<script src="./scripts/FormValidator.js" type="module"></script>
+<script src="./pages/index.js" type="module"></script>
+<script src="./scripts/utils/initialCards.js" type="module"></script>
+<script src="./scripts/components/Popup.js" type="module"></script>
+<script src="./scripts/components/PopupWithImage.js" type="module"></script>
+<script src="./scripts/components/Card.js" type="module"></script>
+<script src="./scripts/components/FormValidator.js" type="module"></script>
+<script src="./scripts/components/PopupWithForm.js" type="module"></script>
+
 </body>
 </html>
