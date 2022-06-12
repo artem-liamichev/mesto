@@ -1,13 +1,14 @@
-import {popupImage} from './index.js'
-import {popupCaption} from './index.js'
-import {openZoomPopup} from './index.js'
+// import {popupImage} from '../../pages/index.js'
+// import {popupCaption} from '../../pages/index.js'
+// import {openZoomPopup} from '../../pages/index.js'
 export default class Card {
   //класс создаёт карточку с текстом и ссылкой на изображение
   //принимает в конструктор данные карточки и селектор её template-элемента;
-  constructor(data, cardSelector) {
-    this._name = data.name;
-    this._link = data.link;
-    this._cardSelector = cardSelector
+  constructor({name, link}, cardSelector, {handleCardClick}) {
+    this._name = name;
+    this._link = link;
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 //содержит приватные методы, которые работают с разметкой
   _getTemplate() {
@@ -40,8 +41,9 @@ export default class Card {
   this._element.querySelector('.element__like-button').addEventListener('click', () => {
     this._handleLike();
   });
-  this._element.querySelector('.element__image').addEventListener('click', () => {
-    this._handleOpenImage();
+  this._element.querySelector('.element__image').addEventListener('click', (evt) => {
+    // this._handleOpenImage();
+    this._handleCardClick(evt);
   });
   };
 
@@ -54,10 +56,10 @@ export default class Card {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
 
-  _handleOpenImage() {
-  popupImage.src = this._link;
-  popupImage.alt = this._name;
-  popupCaption.textContent = this._name;
-  openZoomPopup();
-  }
+  // _handleOpenImage() {
+  //   popupImage.src = this._link;
+  //   popupImage.alt = this._name;
+  //   popupCaption.textContent = this._name;
+  // openZoomPopup();
+  // }
 }
