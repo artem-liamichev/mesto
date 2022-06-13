@@ -1,22 +1,21 @@
 export default class UserInfo {
-  constructor(userNameSelector, userInfoSelector) {
-    this._userName = document.querySelector(userNameSelector);
-    this._userInfo = document.querySelector(userInfoSelector);
-    this._formProfile = document.querySelector('.popup__form_profile');
+  constructor(userName, userJob) {
+    this._userName = document.querySelector(userName);
+    this._userJob = document.querySelector(userJob);
   }
 
 //собрать данные и подставить в форму
 getUserInfo = () => {
   const userName = this._userName.textContent;
-  const userInfo = this._userInfo.textContent;
-  return {userName, userInfo}
+  const userJob = this._userJob.textContent;
+  return {userName, userJob}
 }
 
 //принимает новые данные и добавляет их на страницу
 //получает объект с ключами и устанавливает их в разметку.
-setUserInfo (nameInput,jobInput) {
-  this._userName.textContent = nameInput.value;
-  this._userInfo.textContent = jobInput.value;
+setUserInfo = (data) => {
+  this._userName.textContent = data.name;
+  this._userJob.textContent = data.job;
 }
 
 }

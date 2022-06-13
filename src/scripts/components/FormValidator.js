@@ -1,13 +1,13 @@
 export default class FormValidator {
   //принимает в конструктор объект настроек с селекторами и классами формы:
   //принимает вторым параметром элемент той формы, которая валидируется;
-  constructor(config, formSelector) {
+  constructor(config, form) {
     this._submitButton = config.submitButton;
     this._popupIsInvalid = config.popupIsInvalid;
     this._input = config.input;
     this._inputError = config.inputError;
     this._error = config.error;
-    this._form = formSelector;
+    this._form = form;
     this._inputList = Array.from(this._form.querySelectorAll(this._input));
     this._button = this._form.querySelector(this._submitButton);
   }
@@ -52,7 +52,7 @@ export default class FormValidator {
   }
 
   //изменяет состояние кнопки сабмита:
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._disableButton()
     } else {
@@ -60,18 +60,13 @@ export default class FormValidator {
       }
     }
 
-
-  resetValidation() {
-    this._toggleButtonState();
-  }
-
   //устанавливает обработчики:
   _setEventListeners() {
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._inputList.forEach((input) => {
       input.addEventListener('input',  () => {
         this._checkInputValidity(input);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }

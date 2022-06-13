@@ -1,14 +1,16 @@
-// import {popupImage} from '../../pages/index.js'
-// import {popupCaption} from '../../pages/index.js'
-// import {openZoomPopup} from '../../pages/index.js'
 export default class Card {
   //класс создаёт карточку с текстом и ссылкой на изображение
   //принимает в конструктор данные карточки и селектор её template-элемента;
-  constructor({name, link}, cardSelector, {handleCardClick}) {
-    this._name = name;
+  constructor({place, link}, cardSelector, {handleCardClick}) {
+    this._place = place;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.element__image');
+    this._likeButton = this._element.querySelector('.element__like-button');
+    this._elementName = this._element.querySelector('.element__name');
+    this._deleteButton = this._element.querySelector('.element__delete-button');
   }
 //содержит приватные методы, которые работают с разметкой
   _getTemplate() {
@@ -21,12 +23,11 @@ export default class Card {
   }
 
   createCard() {
-    this._element = this._getTemplate();
     this._addListeners();
     // Добавим данные
-    this._element.querySelector('.element__image').src = this._link
-    this._element.querySelector('.element__image').alt = this._name
-    this._element.querySelector('.element__name').textContent = this._name
+    this._cardImage.src = this._link
+    this._cardImage.alt = this._place
+    this._elementName.textContent = this._place
     // Вернём элемент наружу
     return this._element;
   }
@@ -35,16 +36,15 @@ export default class Card {
 //здесь нужна стрелочная функция, т.к. она позволяет обратиться к обработчикам через this:
 
   _addListeners() {
-  this._element.querySelector('.element__delete-button').addEventListener('click', () => {
-    this._handleDelete();
-  });
-  this._element.querySelector('.element__like-button').addEventListener('click', () => {
-    this._handleLike();
-  });
-  this._element.querySelector('.element__image').addEventListener('click', (evt) => {
-    // this._handleOpenImage();
-    this._handleCardClick(evt);
-  });
+    this._deleteButton.addEventListener('click', () => {
+      this._handleDelete();
+    });
+    this._likeButton.addEventListener('click', () => {
+      this._handleLike();
+    });
+    this._cardImage.addEventListener('click', (evt) => {
+      this._handleCardClick(evt);
+    });
   };
 
   _handleDelete() {
@@ -53,13 +53,6 @@ export default class Card {
   }
 
   _handleLike() {
-    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._likeButton.classList.toggle('element__like-button_active');
   }
-
-  // _handleOpenImage() {
-  //   popupImage.src = this._link;
-  //   popupImage.alt = this._name;
-  //   popupCaption.textContent = this._name;
-  // openZoomPopup();
-  // }
 }
