@@ -10,7 +10,7 @@
 export default class Section {
   constructor({renderer}, containerSelector) {
     this._renderer = renderer;
-    this._containerSelector = containerSelector;
+    this._container = document.querySelector(containerSelector);;
   }
 
     renderItems(cards) {
@@ -20,6 +20,6 @@ export default class Section {
     }
 
     addItem(data){
-      this._containerSelector.prepend(data);
+      this._container.prepend(data);
     }
 }
