@@ -36,9 +36,6 @@ const elementOpenPopupButton = document.querySelector('.profile__add-button');
 //select 2nd form
 const formElement = document.querySelector('.popup__form_add');
 
-//select element-card
-const elements = document.querySelector('.elements');
-
 const popuperProfileWithForm = new PopupWithForm('.popup_profile',
   {submitFormHandler: (data) => {
     userInfo.setUserInfo(data)
@@ -95,7 +92,7 @@ const cardList = new Section({
         cardList.addItem(createCard(element))
   }
 },
-elements
+'.elements'
 );
 cardList.renderItems(initialElements);
 

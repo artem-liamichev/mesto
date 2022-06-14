@@ -3,8 +3,6 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
     this._popupCloseButton = this._popup.querySelector('.popup__close-button');
     this._popupContainer = this._popup.querySelector('.popup__container');
-    this._popupImage = document.querySelector('.popup__image');
-    this._popupCaption = document.querySelector('.popup__caption');
   }
   open() {
     this._popup.classList.remove('popup_fade-out');
