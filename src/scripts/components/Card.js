@@ -67,8 +67,6 @@ export default class Card {
     });
     this._likeButton.addEventListener('click', () => {
       this._likeHandler(this._getId());
-      console.log("first point", this._isLiked);
-
     });
     this._cardImage.addEventListener('click', (evt) => {
       this._handleCardClick(evt);
@@ -76,18 +74,10 @@ export default class Card {
   };
 
   _likeHandler(){
-    console.log("I'm pushed")
-    console.log("I'm pushed, and here is all we have", this._data.likes)
-    console.log("old like", this._isLiked);
-    console.log("second point", this._isLiked);
-
     if (this._isLiked) {
-      console.log("Iam going to reset like")
       this._resetlikeClickHandler(this._getId());
-      console.log("third point", this._isLiked);
 
     } else {
-      console.log("Iam going to set like")
       this._likeClickHandler(this._getId());
     }
   }
@@ -100,21 +90,15 @@ export default class Card {
   }
 
   handleSetLike(data) {
-    console.log("forth point", this._isLiked);
-
-    console.log("after set", data.likes.length.toString())
     this._likeCounter.textContent = data.likes.length.toString();
     this._likeButton.classList.add("element__like-button_active");
-    const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
-    console.log("liked or not(should be liked", liked);
+    // const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
     this._isLiked = true;
   }
   handleResetLike(data) {
-    console.log("after reset", data.likes.length.toString());
     this._likeCounter.textContent = data.likes.length.toString();
     this._likeButton.classList.remove("element__like-button_active");
-    const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
-    // console.log("liked", liked);
+    // const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
     this._isLiked = false;
 
   }

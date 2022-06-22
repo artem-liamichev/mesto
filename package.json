@@ -2,14 +2,11 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "### описание проекта и его функциональности",
-  "main": "./src/pages/index.js",
+  "main": "index.js",
   
   "scripts": {
-    "start": "nodemon src/index.js",
-    "live": "nodemon server.js",
-    "build": "webpack --mode production",
+    "build": "webpack",
     "dev": "webpack serve",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
