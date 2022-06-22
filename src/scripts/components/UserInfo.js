@@ -15,7 +15,7 @@ getUserInfo = () => {
 //получает объект с ключами и устанавливает их в разметку.
 setUserInfo = (data) => {
   this._userName.textContent = data.name;
-  this._userJob.textContent = data.job;
+  this._userJob.textContent = data.about;
 }
 
 }
