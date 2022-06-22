@@ -109,7 +109,7 @@ export default class Api {
 
   addAvatar(data) {
     const body = {
-      avatar: data.link,
+      avatar: data.avatar,
     }
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
