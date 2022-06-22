@@ -129,10 +129,8 @@ function createCard(element){
     {handleCardClick: () => {
     popuperZoom.open(element)}},
     {deleteClickHandler: (cardId) => {
-      console.log('cardId:', cardId)
       const deletePopuper = new PopupWithSubmit('.popup_delete',
        {submitDeletionHandler: () => {
-          console.log("i am here")
           api.deleteCard(cardId)
           .then(() => {
             deletePopuper.close();
