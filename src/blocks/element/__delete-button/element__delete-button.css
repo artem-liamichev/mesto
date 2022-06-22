@@ -10,7 +10,7 @@
   top: 5.47%;
   background-repeat: no-repeat;
   padding: 0;
-  display:grid;
+  display:none;
 }
 
 .element__delete-button:hover {

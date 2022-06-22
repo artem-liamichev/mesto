@@ -11,8 +11,8 @@ export default class PopupWithImage extends Popup {
   //перезаписать open используя логику полиморфизма
   open(element) {
     this._popupImage.src = element.link;
-    this._popupImage.alt = element.place;
-    this._popupCaption.textContent = element.place;
+    this._popupImage.alt = element.name;
+    this._popupCaption.textContent = element.name;
     super.open();
   }
 }
