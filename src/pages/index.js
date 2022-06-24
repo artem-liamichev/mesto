@@ -23,6 +23,34 @@ const avatarImage = document.querySelector('.profile__avatar');
 const popuperAvatar = new PopupWithForm('.popup_avatar', submitFormAvatarHandler)
 const userInfo = new UserInfo('.profile__name', '.profile__bio', avatarImage)
 const popupConfirm = new PopupWithSubmit('.popup_delete')
+
+const cardList = new Section({
+  renderer: (element) => {
+      cardList.addItem(createCard(element, userId))
+  }
+},
+'.elements');
+
+const popupAddCard = new PopupWithForm('.popup_add', submitAddCardForm)
+
+
+let userId = "";
+
+function submitAddCardForm (data) {
+  renderLoading(formElement, true);
+  api.addCard(data)
+    .then((data) => {
+      cardList.addItem(createCard(data, userId))
+      popupAddCard.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(()=>{
+      setTimeout(()=>{
+        renderLoading(formElement, false);
+      }, 400)})}
+
 popupConfirm.setEventListeners();
 
 function submitFormProfileHandler(data) {
@@ -59,6 +87,14 @@ function submitFormAvatarHandler(data) {
     })
 }
 
+elementOpenPopupButton.addEventListener('click', () => {
+  formValidators[ formElement.name ].resetInputError();
+  formValidators[ formElement.name ].toggleButtonState()
+  popupAddCard.open();
+});
+
+popupAddCard.setEventListeners();
+
 avatarImage.addEventListener('mouseover', () => {
   avatarOpenPopupButton.style.display = 'block';
 })
@@ -80,45 +116,14 @@ popuperAvatar.setEventListeners();
 
 api.getAllNeededData()
   .then(argument => {
-
     const [ profileInfo, initialCards ] = argument;
     userInfo.setUserInfo(profileInfo);
-    const userId = profileInfo._id
-    const cardList = new Section({
-        renderer: (element) => {
-            cardList.addItem(createCard(element, userId))
-        }
-      },
-      '.elements');
-
+    userId = profileInfo._id;
     cardList.renderItems(initialCards.reverse());
-
-    const popupAddCard = new PopupWithForm('.popup_add', submitAddCardForm)
-
-    function submitAddCardForm (data) {
-      renderLoading(formElement, true);
-      api.addCard(data)
-        .then((data) => {
-          cardList.addItem(createCard(data, userId))
-          popupAddCard.close();
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(()=>{
-          setTimeout(()=>{
-            renderLoading(formElement, false);
-          }, 400)})}
-
-        elementOpenPopupButton.addEventListener('click', () => {
-          formValidators[ formElement.name ].resetInputError();
-          formValidators[ formElement.name ].toggleButtonState()
-          popupAddCard.open();
-        });
-
-        popupAddCard.setEventListeners();
-
-  })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 
 popuperProfileWithForm.setEventListeners();
 
