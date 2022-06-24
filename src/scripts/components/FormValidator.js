@@ -1,6 +1,4 @@
 export default class FormValidator {
-  //принимает в конструктор объект настроек с селекторами и классами формы:
-  //принимает вторым параметром элемент той формы, которая валидируется;
   constructor(config, form) {
     this._submitButton = config.submitButton;
     this._popupIsInvalid = config.popupIsInvalid;
@@ -12,7 +10,6 @@ export default class FormValidator {
     this._button = this._form.querySelector(this._submitButton);
   }
 
-  //приватные методы, которые обрабатывают форму:
   _showInputError(input) {
     const error = this._form.querySelector(`.${input.id}-error`);
     input.classList.add(this._inputError);
@@ -35,6 +32,7 @@ export default class FormValidator {
     error.textContent = '';
   };
 
+
   _hasInvalidInput() {
     return this._inputList.some((input) => {
         return !input.validity.valid;
@@ -51,7 +49,12 @@ export default class FormValidator {
     this._button.removeAttribute('disabled');
   }
 
-  //изменяет состояние кнопки сабмита:
+  resetInputError(){
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    })
+  }
+
   toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._disableButton()
@@ -60,7 +63,6 @@ export default class FormValidator {
       }
     }
 
-  //устанавливает обработчики:
   _setEventListeners() {
     this.toggleButtonState();
     this._inputList.forEach((input) => {
@@ -71,7 +73,6 @@ export default class FormValidator {
     });
   }
 
-  //публичный метод, который включает валидацию формы.
   enableValidation() {
     this._setEventListeners();
   };

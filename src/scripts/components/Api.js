@@ -8,15 +8,23 @@ export default class Api {
     }
   }
 
+  _checkServerResponse(res){
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject('Возникла ошибка')
+  }
+
+  getAllNeededData() {
+    return Promise.all([this.getProfile(), this.getInitialCards()])
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards/`, {
       headers: this._headers
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject('Возникла ошибка')
+        return this._checkServerResponse(res);
       })
   }
 
@@ -25,10 +33,7 @@ export default class Api {
       headers: this._headers
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject('Возникла ошибка')
+        return this._checkServerResponse(res);
       })
   }
 
@@ -43,10 +48,7 @@ export default class Api {
       body: JSON.stringify(body)
 })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
 
@@ -61,10 +63,7 @@ export default class Api {
       body: JSON.stringify(body)
 })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
 
@@ -74,10 +73,7 @@ export default class Api {
       headers: this._headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
 
@@ -87,10 +83,7 @@ export default class Api {
       headers: this._headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
 
@@ -100,10 +93,7 @@ export default class Api {
       headers: this._headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
 
@@ -117,11 +107,7 @@ export default class Api {
       body: JSON.stringify(body)
 })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject('Возникла ошибка')
+      return this._checkServerResponse(res);
     })
   }
-
  }

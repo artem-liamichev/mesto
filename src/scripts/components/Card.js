@@ -1,9 +1,5 @@
-import Popup from '../components/Popup.js';
-
 export default class Card {
-  //класс создаёт карточку с текстом и ссылкой на изображение
-  //принимает в конструктор данные карточки и селектор её template-элемента;
-  constructor(data, cardSelector, {handleCardClick}, {deleteClickHandler}, {likeClickHandler}, {resetLikeClickHandler}) {
+  constructor(data, userId, cardSelector, {handleCardClick}, {deleteClickHandler}, {likeClickHandler}, {resetLikeClickHandler}) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
@@ -17,13 +13,12 @@ export default class Card {
     this._likeCounter = this._element.querySelector('.element__like-number');
     this._numberOfLikes = data.likes;
     this._ownerId = data.owner._id;
+    this._userId = userId;
     this._deleteClickHandler = deleteClickHandler;
     this._likeClickHandler = likeClickHandler;
-    this._resetlikeClickHandler = resetLikeClickHandler
-    this._isLiked = this._data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
-
+    this._resetlikeClickHandler = resetLikeClickHandler;
+    this._isLiked = this._data.likes.map((el) => el._id).includes(this._userId);
   }
-//содержит приватные методы, которые работают с разметкой
   _getTemplate() {
     const newItem = document
     .querySelector(this._cardSelector)
@@ -34,28 +29,22 @@ export default class Card {
   }
 
   createCard() {
-    //condition - if card created by me (not initial)
     this._addListeners();
-    // Добавим данные
     this._cardImage.src = this._link
     this._cardImage.alt = this._name
     this._elementName.textContent = this._name
     this._likeCounter.textContent = this._numberOfLikes.length.toString()
-    // Вернём элемент наружу
 
     if (this._isLiked) {
       this._likeButton.classList.add("element__like-button_active");
     }
 
-    if (this._ownerId === "11ab6d8f551dd307035c1b67") {
+    if (this._ownerId === this._userId) {
       this._deleteButton.style.display = "grid";
     }
 
     return this._element;
   }
-
-//устанавливаем слушателей событий:
-//здесь нужна стрелочная функция, т.к. она позволяет обратиться к обработчикам через this:
 
   _getId() {
     return this._data._id;
@@ -83,8 +72,6 @@ export default class Card {
   }
 
   handleElementDelete() {
-    // const deletePopuper = new Popup('.popup_delete');
-    // deletePopuper.open();
     this._element.remove();
     this._element = null;
   }
@@ -92,13 +79,11 @@ export default class Card {
   handleSetLike(data) {
     this._likeCounter.textContent = data.likes.length.toString();
     this._likeButton.classList.add("element__like-button_active");
-    // const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
     this._isLiked = true;
   }
   handleResetLike(data) {
     this._likeCounter.textContent = data.likes.length.toString();
     this._likeButton.classList.remove("element__like-button_active");
-    // const liked = data.likes.map((el) => el._id).includes('11ab6d8f551dd307035c1b67');
     this._isLiked = false;
 
   }

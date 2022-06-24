@@ -10,9 +10,7 @@ export default class Popup {
     setTimeout(()=>{
       this._popup.classList.add('popup_opened');
       }, 10);
-    document.addEventListener('keydown',(evt) => {
-      this._handleEscClose(evt);
-    } );
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
@@ -21,9 +19,7 @@ export default class Popup {
     setTimeout(()=>{
       this._popup.classList.remove('popup_opened');
       }, 400);
-    document.removeEventListener('keydown', (evt) => {
-      _handleEscClose(evt);
-    });
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose = (evt) => {
@@ -33,12 +29,11 @@ export default class Popup {
 }
 
   _closeOnClick = (evt) => {
-  if ((evt.target.classList.contains('popup_opened')) && (evt.target.closest('.popup__container') != this._popupContainer) || (evt.target.closest('.popup__close-button') == this._popupCloseButton)) {
+  if ((evt.target.classList.contains('popup_opened')) && (evt.target.closest('.popup__container') !== this._popupContainer) || (evt.target.closest('.popup__close-button') === this._popupCloseButton)) {
       this.close();
     }
   }
 
-//добавляет слушатель иконке закрытия
 setEventListeners() {
   this._popup.addEventListener('mousedown', (evt) => {
     this._closeOnClick(evt);
